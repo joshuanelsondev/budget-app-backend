@@ -11,7 +11,6 @@ app.get("/", (req, res) => {
       .send(
         `Welcome to the Budget App! For Docs, please visit the repo <a href="https://github.com/joshuanelsondev/budget-app-backend">here</a>.`
       )
-      .redirect("https://github.com/joshuanelsondev/budget-app-backend");
 });
 
 module.exports = app;
