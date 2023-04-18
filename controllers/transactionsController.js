@@ -14,15 +14,41 @@ transactions.post("/", validateObject, transactionsValidator, (req, res) => {
 });
 
 transactions.get("/:id", (req, res) => {
+    const { id } = req.params;
+    const transactionInfo = transactionsArray.find(transaction => transaction.id === id);
+    const index = transactionsArray.indexOf(transactionInfo);
 
+    if (transactionsArray[index]) {
+        res.json(transactionsArray[index]);
+    } else {
+        res.redirect("/transactions").status(404).json({error: "Transaction Not Found"});
+    }
 });
 
-transactions.put("/:id", (req, res) => {
+transactions.put("/:id", validateObject, transactionsValidator, (req, res) => {
+    const { id } = req.params;
 
+    if (transactionsArray[id]) {
+        transactionsArray[id] = req.body;
+        res.status(200).json(transactionsArray[id]);
+    } else {
+        res.status(404).json({error: "Not Found"});
+    }
 });
 
 transactions.delete("/:id", (req, res) => {
+    const { id } = req.params;
+    const transactionInfo = transactionsArray.find(
+      (transaction) => transaction.id === id
+    );
+    const index = transactionsArray.indexOf(transactionInfo);
 
+    if (transactionsArray[index]) {
+        const deletedTransaction = transactionsArray.splice(index, 1);
+        res.status(200).json(deletedTransaction);
+    } else {
+        res.status(404).json({error: "Not Found"});
+    }
 });
 
 
