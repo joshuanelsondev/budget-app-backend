@@ -1,7 +1,8 @@
+const { v4: generateID } = require("uuid");
 
 module.exports = [
   {
-    id: "73289",
+    id: generateID(),
     item_name: "Electric",
     amount: "100",
     date: "April 1",
@@ -9,7 +10,7 @@ module.exports = [
     category: "Utilities",
   },
   {
-    id: "839754",
+    id: generateID(),
     item_name: "Income",
     amount: "3000",
     date: "April 15",
@@ -17,7 +18,7 @@ module.exports = [
     category: "Income",
   },
   {
-    id: "6387",
+    id: generateID(),
     item_name: "Groceries",
     amount: "300",
     date: "April 12",
